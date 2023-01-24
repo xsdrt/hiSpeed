@@ -28,5 +28,6 @@ func TestRender_Page(t *testing.T) {
 	if err != nil {
 		t.Error("Error rendering page.", err)
 	}
-	//Test after add the page passed...OK
+	//Test after add the page passed...OK   //* Just an FYI: use go test -cover . to check how much a folder has been tested;
+	//but this will not tell you what statements themselves.  So create a make file in the root of the project to do this...
 }
