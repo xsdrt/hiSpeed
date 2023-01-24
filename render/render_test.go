@@ -19,6 +19,14 @@ func TestRender_Page(t *testing.T) {
 
 	err = testRenderer.Page(w, r, "home", nil, nil)
 	if err != nil {
-		t.Error("Error rendering page", err)
+		t.Error("Error rendering page.", err)
 	}
+	//Above test passed...
+
+	testRenderer.Renderer = "jet" //  Tested before adding the page  to testdata/views to make sure it fails; it did....Great...
+	err = testRenderer.Page(w, r, "home", nil, nil)
+	if err != nil {
+		t.Error("Error rendering page.", err)
+	}
+	//Test after add the page passed...OK
 }
