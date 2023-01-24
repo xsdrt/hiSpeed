@@ -76,12 +76,12 @@ func (h *HiSpeed) New(rootPath string) error {
 	}
 
 	var views = jet.NewSet(
-		jet.NewOSFileSystemLoader(fmt.Sprintf("/%s/views", rootPath)),
+		jet.NewOSFileSystemLoader(fmt.Sprintf("%s/views", rootPath)),
 		jet.InDevelopmentMode(),
 	)
 	h.JetViews = views
 
-	h.CreateRenderer()
+	h.createRenderer()
 
 	return nil
 }
@@ -131,7 +131,7 @@ func (h *HiSpeed) startLoggers() (*log.Logger, *log.Logger) {
 	return infoLog, errorLog
 }
 
-func (h *HiSpeed) CreateRenderer() {
+func (h *HiSpeed) createRenderer() {
 	myRenderer := render.Render{
 		Renderer: h.config.renderer,
 		RootPath: h.RootPath,
