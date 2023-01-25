@@ -6,6 +6,6 @@ test:
 cover:
 	@go test -coverprofile=coverage.out ./... && go tool cover -html=coverage.out
 
-## coverage: displays test coverge
+## coverage: displays test coverage
 coverage:
-	@go test -cover ./...		
+	@go test -cover ./...
