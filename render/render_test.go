@@ -37,9 +37,16 @@ func TestRender_Page(t *testing.T) {
 	//but this will not tell you what you have tested in the statements themselves.  So create test coverage Makefile in the root of the project to do this...
 
 	err = testRenderer.Page(w, r, "no-file", nil, nil) //Test method calling for a non-existent jet file and indicating it should be == nil;
-	if err == nil {                                    // this should fail, which indicates a test pass for testing for an err for non-existent jet file to be parsed...
+	if err == nil {                                    // this should work, which indicates a test pass for testing for an err for non-existent jet file to be parsed...
 		t.Error("Error rendering non-existent jet template.", err)
 	}
+
+	testRenderer.Renderer = ""
+	err = testRenderer.Page(w, r, "home", nil, nil) //Test method calling for a invalid render indicating it should be == nil;
+	if err == nil {                                 // this should fail, which indicates a test pass for testing for an invalid render
+		t.Error("No error returned while rendering with invalid renderer specified.", err) //(in this case non specified so falls to default in render.go that returns an error)...
+	}
+	//With this last test the page rendering func has been completely covered in the render.go file and passes the testing...
 }
 
 func TestRender_GoPage(t *testing.T) {
