@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/CloudyKit/jet/v6"
+	"github.com/alexedwards/scs/v2"
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 	"github.com/xsdrt/hiSpeed/render"
@@ -27,6 +28,7 @@ type HiSpeed struct {
 	RootPath string
 	Routes   *chi.Mux
 	Render   *render.Render
+	Session  *scs.SessionManager
 	JetViews *jet.Set
 	config   config //This will not be exported as there is no reason any app that imports HiSpeed should have access to the config...
 }
