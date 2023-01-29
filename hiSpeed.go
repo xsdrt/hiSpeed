@@ -82,7 +82,7 @@ func (h *HiSpeed) New(rootPath string) error {
 			lifetime: os.Getenv("COOKIE_LIFETIME"),
 			persist:  os.Getenv("COOKIE_PERSISTS"),
 		},
-		sessionType: os.Getenv("SEESION_TYPE"),
+		sessionType: os.Getenv("SESSION_TYPE"),
 	}
 
 	var views = jet.NewSet(
