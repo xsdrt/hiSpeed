@@ -81,9 +81,12 @@ func (h *HiSpeed) New(rootPath string) error {
 			name:     os.Getenv("COOKIE_NAME"),
 			lifetime: os.Getenv("COOKIE_LIFETIME"),
 			persist:  os.Getenv("COOKIE_PERSISTS"),
+			secure:   os.Getenv("COOKIE_SECURE"),
 		},
 		sessionType: os.Getenv("SESSION_TYPE"),
 	}
+
+	//Need to create a session...  just like render is in its own package , putting session in its own pkg also...
 
 	var views = jet.NewSet(
 		jet.NewOSFileSystemLoader(fmt.Sprintf("%s/views", rootPath)),
