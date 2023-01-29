@@ -34,9 +34,11 @@ type HiSpeed struct {
 }
 
 // This type will not be exported but will hold all the config values for this package...
-type config struct {
-	port     string
-	renderer string
+type config struct { //Application config
+	port        string
+	renderer    string
+	cookie      cookieConfig //setup in types.go
+	sessionType string       //setup in types.go
 }
 
 // New reads the .env file, creates our application config, populates the HiSpeed type with settings
@@ -75,6 +77,12 @@ func (h *HiSpeed) New(rootPath string) error {
 	h.config = config{
 		port:     os.Getenv("PORT"),
 		renderer: os.Getenv("RENDERER"),
+		cookie: cookieConfig{
+			name:     os.Getenv("COOKIE_NAME"),
+			lifetime: os.Getenv("COOKIE_LIFETIME"),
+			persist:  os.Getenv("COOKIE_PERSISTS"),
+		},
+		sessionType: os.Getenv("SEESION_TYPE"),
 	}
 
 	var views = jet.NewSet(
