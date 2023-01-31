@@ -1,8 +1,10 @@
 package session
 
 import (
+	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/alexedwards/scs/v2"
 )
@@ -28,12 +30,36 @@ func (c *Session) InitSession() *scs.SessionManager {
 	//Should cookies persist?
 	if strings.ToLower(c.CookiePersist) == "true" {
 		persist = true
-	} else {
-		persist = false
 	}
 
 	//Must cookies be secure?
 	if strings.ToLower(c.CookieSecure) == "true" {
 		secure = true
 	}
+
+	//Create the session
+	session := scs.New()
+	session.Lifetime = time.Duration(minutes) * time.Minute
+	session.Cookie.Persist = persist
+	session.Cookie.Name = c.CookieName
+	session.Cookie.Secure = secure
+	session.Cookie.Domain = c.CookieDomain
+	session.Cookie.SameSite = http.SameSiteLaxMode
+
+	//Which session store to use...
+	switch strings.ToLower(c.SessionType) {
+	case "redis":
+
+	case "mysql", "mariadb":
+
+	case "postgres", "postgresql":
+
+	case "mssql":
+
+	default:
+		// cookie
+
+	}
+
+	return session
 }
