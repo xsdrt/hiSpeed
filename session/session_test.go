@@ -11,11 +11,13 @@ import (
 func TestSession_InitSession(t *testing.T) {
 
 	h := &Session{ //Values used for a receiver (the session init uses a receiver with value(s)...)
+		//CookieLifetime: "",  //Tested with no value  test passed coverage 100%
 		CookieLifetime: "100",
 		CookiePersist:  "true",
 		CookieName:     "hiSpeed",
 		CookieDomain:   "localhost",
 		SessionType:    "cookie",
+		//CookieSecure:   "true", //Tested , good test passed coverage 100%
 	}
 
 	var sm *scs.SessionManager
@@ -47,5 +49,5 @@ func TestSession_InitSession(t *testing.T) {
 		t.Error("wrong type returned testing cookie session. Expected", reflect.ValueOf(sm).Type(), "and got", sessType)
 	}
 
-	//Remember to test: cd into session first :)....
+	//Remember to test: cd into session first, for coverage check cd .. back to root :)....
 }
