@@ -83,6 +83,7 @@ func (h *HiSpeed) New(rootPath string) error {
 			lifetime: os.Getenv("COOKIE_LIFETIME"),
 			persist:  os.Getenv("COOKIE_PERSISTS"),
 			secure:   os.Getenv("COOKIE_SECURE"),
+			domain:   os.Getenv("COOKIE_DOMAIN"),
 		},
 		sessionType: os.Getenv("SESSION_TYPE"),
 	}
@@ -94,6 +95,7 @@ func (h *HiSpeed) New(rootPath string) error {
 		CookiePersist:  h.config.cookie.persist,
 		CookieName:     h.config.cookie.name,
 		SessionType:    h.config.sessionType,
+		CookieDomain:   h.config.cookie.domain,
 	}
 
 	h.Session = sess.InitSession()
