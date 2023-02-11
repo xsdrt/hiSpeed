@@ -102,7 +102,7 @@ func (h *HiSpeed) New(rootPath string) error {
 			domain:   os.Getenv("COOKIE_DOMAIN"),
 		},
 		sessionType: os.Getenv("SESSION_TYPE"),
-		database: databaseConfig{
+		database: databaseConfig{ //Populate the database config and values in case needed...
 			database: os.Getenv("DATABASE_TYPE"),
 			dsn:      h.BuildDSN(),
 		},
