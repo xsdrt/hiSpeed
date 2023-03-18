@@ -22,7 +22,7 @@ func TestSession_InitSession(t *testing.T) {
 
 	var sm *scs.SessionManager
 
-	ses := h.InitSession() //Make sure a return value from this call to InitSession so cerate some variables to start with...
+	ses := h.InitSession() //Make sure a return value from this call to InitSession so create some variables to start with...
 
 	var sessKind reflect.Kind //From the reflect package
 	var sessType reflect.Type //From the reflect package
