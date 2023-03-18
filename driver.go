@@ -23,9 +23,5 @@ func (h *HiSpeed) OpenDB(dbType, dsn string) (*sql.DB, error) {
 		return nil, err
 	}
 
-<<<<<<< HEAD
-	return db, nil //If all above works return pool of connections to access db...
-=======
 	return db, nil //If all above works return pool of connections
->>>>>>> sessionTestBranch
 }
