@@ -4,6 +4,12 @@ import (
 	"log"
 
 	"github.com/golang-migrate/migrate/v4"
+
+	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/golang-migrate/migrate/v4/database/mysql"
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/database/sqlserver"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
 //These funcs should be able to be run from the cli...
@@ -21,7 +27,7 @@ func (hs *HiSpeed) MigrateUp(dsn string) error { //need to change the postgres d
 	}
 	defer m.Close()
 
-	if err = m.Up(); err != nil {
+	if err := m.Up(); err != nil {
 		log.Println("Error running migration: ", err)
 		return err
 	}
