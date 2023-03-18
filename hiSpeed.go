@@ -102,6 +102,10 @@ func (h *HiSpeed) New(rootPath string) error {
 			domain:   os.Getenv("COOKIE_DOMAIN"),
 		},
 		sessionType: os.Getenv("SESSION_TYPE"),
+		database: databaseConfig{ //Populate the database config and values in case needed...
+			database: os.Getenv("DATABASE_TYPE"),
+			dsn:      h.BuildDSN(),
+		},
 	}
 
 	//Need to create a session...  just like render is in its own package , putting session in its own pkg also...
@@ -149,6 +153,9 @@ func (h *HiSpeed) ListenAndServe() {
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 600 * time.Second, //Really long for development purposes, can/should change for prod...
 	}
+	//After the server shuts down close the DB
+	defer h.DB.Pool.Close()
+
 	h.InfoLog.Printf("Listening on port %s", os.Getenv("PORT"))
 	err := srv.ListenAndServe()
 	h.ErrorLog.Fatal(err)
@@ -178,6 +185,7 @@ func (h *HiSpeed) createRenderer() {
 		RootPath: h.RootPath,
 		Port:     h.config.port,
 		JetViews: h.JetViews,
+		Session:  h.Session,
 	}
 	h.Render = &myRenderer
 }
