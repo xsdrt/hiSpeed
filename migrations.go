@@ -2,6 +2,7 @@ package hiSpeed
 
 import (
 	"log"
+	"path/filepath"
 
 	"github.com/golang-migrate/migrate/v4"
 
@@ -21,7 +22,8 @@ import (
 //and also  go get github.com/golang-migrate/migrate/v4/source/file
 
 func (hs *HiSpeed) MigrateUp(dsn string) error { //need to change the postgres driver to the one used by golang-migrate !!!
-	m, err := migrate.New("file://"+hs.RootPath+"/migrations", dsn)
+	rootPath := filepath.ToSlash(hs.RootPath)
+	m, err := migrate.New("file://"+rootPath+"/migrations", dsn)
 	if err != nil {
 		return err
 	}
@@ -36,7 +38,8 @@ func (hs *HiSpeed) MigrateUp(dsn string) error { //need to change the postgres d
 }
 
 func (hs *HiSpeed) MigrateDownAll(dsn string) error {
-	m, err := migrate.New("file://"+hs.RootPath+"/migrations", dsn)
+	rootPath := filepath.ToSlash(hs.RootPath)
+	m, err := migrate.New("file://"+rootPath+"/migrations", dsn)
 	if err != nil {
 		return err
 	}
@@ -50,7 +53,8 @@ func (hs *HiSpeed) MigrateDownAll(dsn string) error {
 }
 
 func (hs *HiSpeed) Steps(n int, dsn string) error { //if the int n is positive; will run up migrations; if a negative run down migrations...
-	m, err := migrate.New("file://"+hs.RootPath+"/migrations", dsn)
+	rootPath := filepath.ToSlash(hs.RootPath)
+	m, err := migrate.New("file://"+rootPath+"/migrations", dsn)
 	if err != nil {
 		return err
 	}
@@ -65,7 +69,8 @@ func (hs *HiSpeed) Steps(n int, dsn string) error { //if the int n is positive; 
 
 // Sometime when running migrations might have an error in the file itself, sounds like golang-migrate will mark this as dirty in the db and not allow , well force a fix.
 func (hs *HiSpeed) MigrateForce(dsn string) error {
-	m, err := migrate.New("file://"+hs.RootPath+"/migrations", dsn)
+	rootPath := filepath.ToSlash(hs.RootPath)
+	m, err := migrate.New("file://"+rootPath+"/migrations", dsn)
 	if err != nil {
 		return err
 	}

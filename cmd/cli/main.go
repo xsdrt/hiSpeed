@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"log"
 	"os"
 
 	"github.com/fatih/color"
@@ -14,6 +13,7 @@ const version = "1.0.0"
 var his hiSpeed.HiSpeed
 
 func main() {
+	var message string
 	arg1, arg2, arg3, err := validateInput()
 	if err != nil {
 		exitGracefully(err)
@@ -28,6 +28,16 @@ func main() {
 	case "version":
 		color.Yellow("Application version: " + version)
 
+	case "migrate":
+		if arg2 == "" { //if arg2 is equal to nothing , assume they are running an up migration...
+			arg2 = "up"
+		}
+		err = doMigrate(arg2, arg3)
+		if err != nil {
+			exitGracefully(err)
+		}
+		message = "Migrations completed!"
+
 	case "make":
 		if arg2 == "" { //if blank or empty string exit with error
 			exitGracefully(errors.New("make requires a subcommand: (migration|model|handler)"))
@@ -38,8 +48,9 @@ func main() {
 		}
 
 	default:
-		log.Println(arg2, arg3)
+		showHelp()
 	}
+	exitGracefully(nil, message)
 }
 
 func validateInput() (string, string, string, error) {
