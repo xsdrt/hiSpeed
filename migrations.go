@@ -23,7 +23,7 @@ import (
 
 func (hs *HiSpeed) MigrateUp(dsn string) error { //need to change the postgres driver to the one used by golang-migrate !!!
 	rootPath := filepath.ToSlash(hs.RootPath)
-	m, err := migrate.New("file://"+rootPath+"/migrations", dsn)
+	m, err := migrate.New("file://"+rootPath+"/migrations", dsn) //for windows path...hmmm but if using wsl might not need to use; leave it for now as end user might mot be using wsl
 	if err != nil {
 		return err
 	}
