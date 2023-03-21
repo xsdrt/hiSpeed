@@ -75,13 +75,7 @@ func validateInput() (string, string, string, error) {
 	return arg1, arg2, arg3, nil
 }
 
-func showHelp() {
-	color.Yellow(`Available commands:
-	help			- show the help commands
-	version 		- print application version
-	
-	`)
-}
+//moved showHelp from here to Helpers.go file...
 
 func exitGracefully(err error, msg ...string) {
 	message := ""
