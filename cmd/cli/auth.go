@@ -9,9 +9,10 @@ import (
 func doAuth() error { // This func called from the make.go file case:auth statement...
 	// going to need migrations
 	dbType := his.DB.DataType
+
 	fileName := fmt.Sprintf("%d_create_auth_tables", time.Now().UnixMicro()) // base file name
-	upFile := his.RootPath + "/migrations/" + fileName + "up.sql"
-	downFile := his.RootPath + "/migrations/" + fileName + "down.sql"
+	upFile := his.RootPath + "/migrations/" + fileName + ".up.sql"
+	downFile := his.RootPath + "/migrations/" + fileName + ".down.sql"
 
 	log.Println(dbType, upFile, downFile)
 
@@ -20,7 +21,7 @@ func doAuth() error { // This func called from the make.go file case:auth statem
 		exitGracefully(err)
 	}
 
-	err = copyDataToFIle([]byte("drop table if exist users cascade"), downFile)
+	err = copyDataToFIle([]byte("drop table if exists users cascade"), downFile)
 	if err != nil {
 		exitGracefully(err)
 	}
