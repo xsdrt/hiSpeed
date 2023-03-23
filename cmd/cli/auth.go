@@ -21,13 +21,23 @@ func doAuth() error { // This func called from the make.go file case:auth statem
 		exitGracefully(err)
 	}
 
-	err = copyDataToFIle([]byte("drop table if exists users cascade"), downFile)
+	err = copyDataToFIle([]byte("drop table if exists users cascade; drop table if exists tokens cascade; drop table if exists remember_tokens;"), downFile)
 	if err != nil {
 		exitGracefully(err)
 	}
 
 	// need to run migrations
 	err = doMigrate("up", "")
+	if err != nil {
+		exitGracefully(err)
+	}
+
+	err = copyFileFromTemplate("templates/data/user.go.txt", his.RootPath+"/data/user.go")
+	if err != nil {
+		exitGracefully(err)
+	}
+
+	err = copyFileFromTemplate("templates/data/token.go.txt", his.RootPath+"/data/token.go")
 	if err != nil {
 		exitGracefully(err)
 	}
