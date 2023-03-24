@@ -57,7 +57,7 @@ func doMake(arg2, arg3 string) error {
 		}
 
 		handler := string(data)
-		handler = strings.ReplaceAll(handler, "$HANDLENAME$", strcase.ToCamel(arg3))
+		handler = strings.ReplaceAll(handler, "$HANDLERNAME$", strcase.ToCamel(arg3))
 
 		err = ioutil.WriteFile(fileName, []byte(handler), 0644)
 		if err != nil {
