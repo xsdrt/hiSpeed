@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gertd/go-pluralize"
 	"github.com/iancoleman/strcase"
 )
 
@@ -63,6 +64,20 @@ func doMake(arg2, arg3 string) error {
 		if err != nil {
 			exitGracefully(err)
 		}
+
+	case "model": // if some one were to type in the cli ./hiSpeed.exe make model it would make a model for them...
+		if arg3 == "" {
+			exitGracefully(errors.New("you must give the model a name"))
+		}
+
+		data, err := templateFS.ReadFile("templates/data/model.go.txt")
+		if err != nil {
+			exitGracefully(err)
+		}
+
+		model := string(data)
+
+		plur := plura
 
 	}
 
