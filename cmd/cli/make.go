@@ -77,7 +77,7 @@ func doMake(arg2, arg3 string) error {
 
 		model := string(data)
 
-		plur := plura
+		plur := pluralize.NewClient()
 
 	}
 
