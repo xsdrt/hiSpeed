@@ -79,6 +79,29 @@ func doMake(arg2, arg3 string) error {
 
 		plur := pluralize.NewClient()
 
+		var modelName = arg3
+		var tableName = arg3
+
+		if plur.IsPlural(arg3) {
+			modelName = plur.Singular(arg3)
+			tableName = strings.ToLower(tableName)
+		} else {
+			tableName = strings.ToLower(plur.Plural(arg3))
+		}
+
+		fileName := his.RootPath + "/data/" + strings.ToLower(modelName) + ".go"
+		if fileExists(fileName) { //check if exists and then stop if does so we do not overwrite users data...
+			exitGracefully(errors.New(fileName + " already exists!"))
+		}
+
+		model = strings.ReplaceAll(model, "$MODELNAME$", strcase.ToCamel(modelName))
+		model = strings.ReplaceAll(model, "$TABLENAME$", tableName)
+
+		err = copyDataToFIle([]byte(model), fileName)
+		if err != nil {
+			exitGracefully(err)
+		}
+
 	}
 
 	return nil
