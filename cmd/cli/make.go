@@ -48,7 +48,7 @@ func doMake(arg2, arg3 string) error {
 		//Build a fileName for the new handler, copy some template file into that file and then write the file...
 		fileName := his.RootPath + "/handlers/" + strings.ToLower(arg3) + ".go"
 		if fileExists(fileName) { //check if exists and then stop if does so we do not overwrite users data...
-			exitGracefully(errors.New(fileName + "already exists!"))
+			exitGracefully(errors.New(fileName + " already exists!"))
 		}
 
 		data, err := templateFS.ReadFile("templates/handlers/handler.go.txt")
