@@ -68,7 +68,8 @@ func showHelp() {
 	make migration <name> - creates (2) two new up and down migrations in the migrations folder
 	make auth             - create and run migrations for authentication tables, also creates models and middleware
 	make handler <name>   - create a stub handler in the handlers directory
-	make model <name>     - create a new model in the models directory
+	make model <name>     - create a new model in the data directory
+	make session          - creates a table in the database as a session store
 	
 	`)
 }
