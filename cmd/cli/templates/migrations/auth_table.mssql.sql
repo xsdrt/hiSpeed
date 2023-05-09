@@ -1,0 +1,40 @@
+IF OBJECT_ID('users', 'U') IS NOT NULL 
+    DROP TABLE users;
+IF OBJECT_ID('remember_tokens', 'U') IS NOT NULL 
+    DROP TABLE remember_tokens;
+IF OBJECT_ID('tokens', 'U') IS NOT NULL 
+    DROP TABLE tokens;
+
+CREATE TABLE users (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    user_active INT NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password CHAR(60) NOT NULL,
+    created_at DATETIME NULL DEFAULT NULL,
+    updated_at DATETIME NULL DEFAULT NULL,
+    UNIQUE (email)
+);
+
+CREATE TABLE remember_tokens (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id INT NOT NULL,
+    remember_token VARCHAR(100) NOT NULL DEFAULT '',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE tokens (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    token_hash VARBINARY(255) DEFAULT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    expiry DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
