@@ -4,6 +4,8 @@ go 1.19
 
 require (
 	github.com/CloudyKit/jet/v6 v6.2.0
+	github.com/alexedwards/scs/mssqlstore v0.0.0-20230327161757-10d4299e3b24
+	github.com/alexedwards/scs/mysqlstore v0.0.0-20230327161757-10d4299e3b24
 	github.com/alexedwards/scs/v2 v2.5.0
 	github.com/fatih/color v1.15.0
 	github.com/gertd/go-pluralize v0.2.1
@@ -16,10 +18,7 @@ require (
 	github.com/joho/godotenv v1.4.0
 )
 
-require (
-	github.com/alexedwards/scs/mssqlstore v0.0.0-20230327161757-10d4299e3b24 // indirect
-	github.com/alexedwards/scs/mysqlstore v0.0.0-20230327161757-10d4299e3b24 // indirect
-)
+require github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 
 require (
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
