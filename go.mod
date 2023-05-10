@@ -7,6 +7,7 @@ require (
 	github.com/alexedwards/scs/mssqlstore v0.0.0-20230327161757-10d4299e3b24
 	github.com/alexedwards/scs/mysqlstore v0.0.0-20230327161757-10d4299e3b24
 	github.com/alexedwards/scs/v2 v2.5.0
+	github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a
 	github.com/fatih/color v1.15.0
 	github.com/gertd/go-pluralize v0.2.1
 	github.com/go-chi/chi/v5 v5.0.8
@@ -17,8 +18,6 @@ require (
 	github.com/jackc/pgx/v4 v4.18.1
 	github.com/joho/godotenv v1.4.0
 )
-
-require github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
 
 require (
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
