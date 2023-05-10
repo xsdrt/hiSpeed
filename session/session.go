@@ -62,6 +62,7 @@ func (c *Session) InitSession() *scs.SessionManager {
 		session.Store = postgresstore.New(c.DBPool) //Set the sessions store
 
 	case "mssql":
+		session.Store = mssqlstore.New(c.DBPool)
 
 	default:
 		// cookie

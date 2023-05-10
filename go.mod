@@ -18,7 +18,7 @@ require (
 	github.com/joho/godotenv v1.4.0
 )
 
-require github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
+require github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
 
 require (
 	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
