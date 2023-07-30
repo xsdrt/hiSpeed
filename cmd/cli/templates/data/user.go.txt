@@ -100,7 +100,7 @@ func (u *User) Update(theUser User) error { //Update the user record
 	return nil
 }
 
-func (u *User) Delete(id int) error {
+func (u *User) Delete(id int) error {	//Delete a user by id...
 	collection := upper.Collection(u.Table())
 	res := collection.Find(id)
 	err := res.Delete()
